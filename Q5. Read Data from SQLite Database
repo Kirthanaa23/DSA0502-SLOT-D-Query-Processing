@@ -1,0 +1,14 @@
+import sqlite3
+import pandas as pd
+
+con = sqlite3.connect("student.db")
+
+df = pd.read_sql("SELECT * FROM Student", con)
+
+print(df)
+
+data = pd.read_sql("SELECT * FROM Student WHERE Marks>80", con)
+
+data.to_csv("report.csv", index=False)
+
+con.close()
