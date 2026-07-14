@@ -1,0 +1,14 @@
+import pandas as pd
+
+jan = pd.read_csv("jan.csv")
+feb = pd.read_csv("feb.csv")
+
+df = pd.concat([jan, feb])
+
+print("Total Sales:", df["Sales"].sum())
+
+print(df.groupby("Month")["Sales"].sum())
+
+print(df.groupby("Product")["Sales"].sum().sort_values(ascending=False))
+
+df.to_csv("sales_report.csv", index=False)
