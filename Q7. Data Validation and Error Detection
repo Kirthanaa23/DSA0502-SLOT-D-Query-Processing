@@ -1,0 +1,17 @@
+import pandas as pd
+
+df = pd.read_csv("student.csv")
+
+print(df.isnull().sum())
+
+df = df.drop_duplicates()
+
+df = df[df["Email"].str.contains("@")]
+
+df = df[df["Phone"].astype(str).str.len()==10]
+
+df = df[df["Marks"]>=0]
+
+df.to_csv("validated_student.csv", index=False)
+
+print(df)
