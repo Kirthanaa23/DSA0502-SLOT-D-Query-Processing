@@ -1,0 +1,11 @@
+import pandas as pd
+
+df = pd.read_csv("employee.csv")
+
+df["NetSalary"] = df["Basic"] + df["Allowance"] - df["Deduction"]
+
+print(df[df["NetSalary"]==df["NetSalary"].max()])
+
+print(df.groupby("Department")["NetSalary"].sum())
+
+df.to_csv("payroll_report.csv", index=False)
