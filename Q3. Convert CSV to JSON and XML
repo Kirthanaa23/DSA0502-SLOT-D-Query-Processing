@@ -1,0 +1,10 @@
+import pandas as pd
+
+df = pd.read_csv("student.csv")
+
+df.to_json("student.json", orient="records")
+
+df.to_xml("student.xml", index=False)
+
+print(pd.read_json("student.json"))
+print(pd.read_xml("student.xml"))
