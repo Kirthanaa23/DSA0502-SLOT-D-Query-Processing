@@ -1,0 +1,12 @@
+import pandas as pd
+
+df = pd.read_csv("student.csv")
+
+df = df.drop_duplicates()
+df = df.fillna(0)
+df = df.rename(columns={"Name":"StudentName"})
+df["Marks"] = df["Marks"].astype(int)
+
+df.to_csv("cleaned_student.csv", index=False)
+
+print(df)
