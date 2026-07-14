@@ -1,0 +1,19 @@
+import sqlite3
+
+con = sqlite3.connect("college.db")
+cur = con.cursor()
+
+cur.execute("CREATE TABLE IF NOT EXISTS Student(StudentID INT PRIMARY KEY, Name TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS Course(CourseID INT PRIMARY KEY, CourseName TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS Marks(StudentID INT, CourseID INT, Marks INT)")
+
+cur.execute("INSERT INTO Student VALUES(1,'Ram')")
+cur.execute("INSERT INTO Course VALUES(101,'Python')")
+cur.execute("INSERT INTO Marks VALUES(1,101,95)")
+
+con.commit()
+
+for row in cur.execute("SELECT Name,CourseName,Marks FROM Student JOIN Marks USING(StudentID) JOIN Course USING(CourseID)"):
+    print(row)
+
+con.close()
