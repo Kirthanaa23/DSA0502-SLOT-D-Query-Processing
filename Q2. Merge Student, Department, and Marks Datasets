@@ -1,0 +1,12 @@
+import pandas as pd
+
+student = pd.read_csv("student.csv")
+dept = pd.read_csv("department.csv")
+marks = pd.read_csv("marks.csv")
+
+df = pd.merge(student, dept, on="DepartmentID")
+df = pd.merge(df, marks, on="StudentID")
+
+print(df)
+
+df.to_csv("student_report.csv", index=False)
